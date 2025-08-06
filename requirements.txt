@@ -1,4 +1,4 @@
 streamlit==1.47.1
-google-cloud-aiplatform==1.103.0
+google-cloud-aiplatform==1.106.0
 google-cloud-modelarmor==0.2.6
 openai==1.95.1
