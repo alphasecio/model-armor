@@ -4,4 +4,4 @@ google-cloud-modelarmor==0.2.8
 openai==2.1.0
 anthropic[vertex]==0.69.0
 python-docx==1.2.0
-pypdf==6.1.1
+pypdf==6.1.3
