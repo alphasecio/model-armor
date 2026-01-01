@@ -1,5 +1,5 @@
 streamlit==1.51.0
-google-cloud-aiplatform==1.126.1
+google-cloud-aiplatform==1.132.0
 google-cloud-modelarmor==0.3.0
 openai==2.7.1
 anthropic[vertex]==0.72.0
