@@ -1,17 +1,15 @@
-# Stage 1
-FROM python:3.12-slim AS builder
+# Stage 1: install dependencies
+FROM python:3.13-slim AS builder
+
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_ROOT_USER_ACTION=ignore
 
 WORKDIR /install
 COPY requirements.txt .
+RUN pip install --prefix=/install --no-cache-dir -r requirements.txt
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    && pip install --upgrade pip \
-    && pip install --prefix=/install --no-cache-dir -r requirements.txt \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Stage 2
-FROM python:3.12-slim
+# Stage 2: runtime
+FROM python:3.13-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
@@ -19,11 +17,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /usr/src/app
 
 COPY --from=builder /install /usr/local
-COPY . .
+COPY core.py cloudrun_app.py ./
 
-RUN useradd -m appuser
+RUN useradd --create-home --uid 10001 appuser
 USER appuser
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "./cloudrun_app.py", "--server.port=8501", "--server.enableXsrfProtection=false"]
+CMD ["sh", "-c", "exec streamlit run cloudrun_app.py --server.port=${PORT:-8501} --server.headless=true --server.maxUploadSize=10 --browser.gatherUsageStats=false"]
