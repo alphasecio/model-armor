@@ -9,5 +9,7 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    cooldown:
+      default-days: 5
     allow:
       - dependency-type: "all"
