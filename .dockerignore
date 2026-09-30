@@ -1,0 +1,16 @@
+.git
+.github
+.gitignore
+.dockerignore
+.env
+.env.*
+*.json
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+README.md
+LICENSE
+*.png
+streamlit_app.py
