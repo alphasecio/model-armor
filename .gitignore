@@ -169,3 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Google Cloud credentials (never commit service account keys)
+temp_credentials.json
+*credentials*.json
+*-key.json
