@@ -1,5 +1,5 @@
 streamlit==1.66.1
-google-genai==2.32.0
+google-genai==2.33.0
 google-auth==2.62.0
 google-cloud-modelarmor==0.7.2
 openai==3.36.0
